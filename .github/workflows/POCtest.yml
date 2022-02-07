@@ -22,8 +22,7 @@ jobs:
           time: '20s'
       - run: git clone https://github.com/juice-shop/juice-shop.git
       - run: cd juice-shop
-      - run: npm install
-      - run: npm start
+      - run: (npm start&)
       - name: Wait 20s
         uses: jakejarvis/wait-action@master
         with:
