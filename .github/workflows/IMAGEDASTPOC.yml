@@ -22,7 +22,11 @@ jobs:
         run: docker pull owasp/zap2docker-stable   
         
       - name: Run Docker Container of juice shop
-        run: docker run --rm -p 3000:3000 bkimminich/juice-shop        
+        run: (docker run --rm -p 3000:3000 bkimminich/juice-shop)&  
+      - name: Wait 10s
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '10s'        
       - name: Test quick scan
         run: docker run -i owasp/zap2docker-stable zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' http://localhost:3000
 
