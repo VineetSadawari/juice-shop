@@ -28,5 +28,5 @@ jobs:
         with:
           time: '10s'        
       - name: Test quick scan
-        run: docker run -i owasp/zap2docker-stable zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' http://localhost:3000
+        run: docker run -i owasp/zap2docker-stable zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' http://testphp.vulnhub.com
 
