@@ -1,0 +1,29 @@
+
+
+name: ImageDastPOC
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2  
+      
+      - name: Pull img
+      - run: docker pull bkimminich/juice-shop   
+      
+      - name: Wait 20s
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '20s'    
+
+      - name: Install image dockerized OWASP ZAP
+        run: docker pull owasp/zap2docker-stable   
+      - name: Containerize application   
+      - name: Run Docker Container of juice shop
+        run: docker run --rm -p 3000:3000 bkimminich/juice-shop        
+      - name: Test quick scan
+        run: docker run -i owasp/zap2docker-stable zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' http://localhost:3000
+
