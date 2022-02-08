@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-      - uses: actions/checkout@v2  
+        uses: actions/checkout@v2  
       
       
       - run: docker pull bkimminich/juice-shop   
@@ -20,7 +20,7 @@ jobs:
 
       - name: Install image dockerized OWASP ZAP
         run: docker pull owasp/zap2docker-stable   
-      - name: Containerize application   
+        
       - name: Run Docker Container of juice shop
         run: docker run --rm -p 3000:3000 bkimminich/juice-shop        
       - name: Test quick scan
